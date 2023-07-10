@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>Sign up to gain entrance into our exclusive Clubhouse</h1>
+  <form action="" method="POST">
+    <label for="firstName">First Name</label>
+    <input type="text" name="firstName"/>
+    <label for="lastName">Last Name</label>
+    <input type="text" name="lastName"/>
+    <label for="email">Email</label>
+    <input type="text" name="email"/>
+    <label for="password">Password</label>
+    <input type="text" name="password"/>   
+    <button>Sign up</button>
+  </form>
+  <%if(errors.length > 0){%>
+    <%errors.forEach(error => {%>
+        <p id = "err-msg-signup"><%=error.msg%></p>
+    <%})%>
+<%}%> 
+<%if(success.length > 0){%>
+    <%success.forEach(msg => {%>
+        <p id = "success-msg-signup"><%=msg.msg%></p>
+    <%})%>
+<%}%>
+  <a href="/">Home</a>
+</body>
+</html>
