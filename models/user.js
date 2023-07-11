@@ -3,11 +3,11 @@ const validator = require('validator')
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  first_name: { type: String, required: true, maxLength: 100 },
-  last_name: { type: String, required: true, maxLength: 100 },
+  username: { type: String, required: true, maxLength: 100 },
   email: { type: String, required: [true, 'Email address is required'] },
   password: { type: String, required: true },
-  member_status: { type: String, required: true }
+  member: { type: Boolean, default: false },
+  admin: { type: Boolean, default: false }
 });
 
 // Virtual for author's full name

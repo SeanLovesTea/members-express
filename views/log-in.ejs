@@ -5,7 +5,9 @@
   <title></title>
 </head>
 <body>
-  
+  <% if(messages.error) {%>
+    <%= messages.error %>
+    <% } %>
   <h1>Hello, Log in to enter the exclusive Clubhouse</h1>
   <form action="/log-in" method="POST">
     <label for="email">Email</label>
