@@ -10,7 +10,6 @@ const User = require('./models/user');
 const { body, validationResult } = require('express-validator')
 const flash = require('connect-flash')
 
-
 require('dotenv').config()
 
 const mongoDb = process.env.MONGODB_KEY ;
@@ -35,6 +34,5 @@ app.use((req, res, next) => {
 })
 
 app.use('/', indexRouter)
-
 
 app.listen(8080, () => console.log("app listening on port 8080!"));

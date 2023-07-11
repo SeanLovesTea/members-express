@@ -6,10 +6,10 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
-router.get('/', (req, res) => res.redirect('/log-in'))
-router.get("/log-in", (req, res) => res.render("log-in",{messages : req.flash()} ));
+router.get('/', (req, res) => res.redirect('/login'))
+router.get("/login", (req, res) => res.render("login",{messages : req.flash()} ));
 
-router.get("/sign-up",  (req, res) => res.render("sign-up", {errors:[], success:[]}));
+router.get("/signup",  (req, res) => res.render("signup", {errors:[], success:[]}));
 
 router.post('/sign-up', authController.sign_up_post)
 
@@ -49,7 +49,7 @@ passport.deserializeUser(async function(id, done) {
   }
 })
 router.post(
-  "/log-in",
+  "/login",
   passport.authenticate("local", {
     successRedirect: "/password",
     failureRedirect: "/",

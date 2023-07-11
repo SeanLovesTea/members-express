@@ -1,8 +1,6 @@
 const { body, validationResult } = require('express-validator')
 const bcrypt = require('bcryptjs')
 const User = require('../models/user')
-const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 
 exports.sign_up_post = [
   body('username').trim().isLength({ min:1 }).escape().withMessage('Username required'),
@@ -16,10 +14,10 @@ exports.sign_up_post = [
     const uniqueEmail = await User.find({ email: req.body.email })
     const errors = validationResult(req)
     if(!errors.isEmpty()){
-      res.render('sign-up', {errors: errors.array(), success:[]})
+      res.render('signup', {errors: errors.array(), success:[]})
     }
     else if(uniqueEmail.length > 0) {
-      res.render('sign-up', { errors: [{msg: 'email already taken '}], success: []})
+      res.render('signup', { errors: [{msg: 'email already taken '}], success: []})
     }else{
       bcrypt.hash(req.body.password, 10, async function(err, hash) {
         if (err) return next(err)
