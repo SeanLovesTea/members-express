@@ -6,8 +6,10 @@ const LocalStrategy = require("passport-local").Strategy;
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
-router.get('/', (req, res) => res.redirect('/login'))
+router.get('/', (req, res) => res.render('home',{user: req.user}))
+router.get('/home', (req, res) => res.render('home', {user: req.user}))
 router.get("/login", (req, res) => res.render("login",{messages : req.flash()} ));
+router.post('/logout', authController.sign_out) 
 
 router.get("/signup",  (req, res) => res.render("signup", {errors:[], success:[]}));
 
@@ -51,13 +53,13 @@ passport.deserializeUser(async function(id, done) {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/password",
+    successRedirect: "/home",
     failureRedirect: "/",
     failureFlash: true,
     failureMessage: true,
   })
 );
-router.get('/password',(req, res) => res.render("password"))
+router.get('/password', authController.secret_password_login_check, (req, res) => res.render("password"))
 router.post('/password', authController.secret_password)
 
 module.exports = router;

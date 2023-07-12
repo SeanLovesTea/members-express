@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+ <% if(user) {%>
+  <h1> Welcome to the Club <%= user.username %></h1>
+  <form action='/logout' method="POST">
+    <button>Log out</button>
+  </form>
+  <% } else { %>
+  <a href="/login">Log In</a>
+  <% } %>
+</body>
+</html>

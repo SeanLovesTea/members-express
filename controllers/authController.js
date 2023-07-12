@@ -35,6 +35,22 @@ exports.sign_up_post = [
       })
   }
 }]
+exports.sign_out = async(req, res, next) => {
+ req.logout(function(err){
+  if (err) { return next(err)}
+  return res.redirect('/')
+ })
+}
+
+exports.secret_password_login_check = async(req, res, next) => {
+  console.log(req.user)
+  if(req.user){
+    next()
+  } else {
+    return res.redirect('/login')
+  }
+}
+
 exports.secret_password = async(req, res, next) => {
   if (req.body.password !== 'Louiseypoo') {
     return { message: 'Incorrect Password!'}
