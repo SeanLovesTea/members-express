@@ -10,7 +10,7 @@ const bcrypt = require('bcryptjs')
 router.get('/', messageController.messages_list)
 router.get("/login", (req, res) => res.render("login",{messages : req.flash(),user: req.user} ));
 router.post('/logout', authController.sign_out) 
-router.get("/signup",authController.login_check,  (req, res) => res.render("signup", {errors:[], success:[],user: req.user}));
+router.get("/signup",  (req, res) => res.render("signup", {errors:[], success:[],user: req.user}));
 router.post('/signup', authController.sign_up_post)
 router.get('/new',authController.login_check, (req, res) => res.render("createMessage", { user: req.user}))
 router.post('/new', messageController.new_message)

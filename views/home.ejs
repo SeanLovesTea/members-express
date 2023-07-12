@@ -13,9 +13,10 @@
     <div class="content">
       <% if(user) {%>
         <h1> Welcome back <%= user.username %></h1>
-        <a href="/new" class="nav__link black">Create a messsage</a>
+        
         <% } %>
       <% if( typeof user == 'object' && user.member){ %>
+        <a href="/new" class="nav__link black">Create a messsage</a>
       <% for(let i=0; i < messages.length; i++){%>
         <div class="message__wrapper">
           <div class="message__username"><%= messages[i].createdBy %></div>

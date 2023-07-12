@@ -14,10 +14,10 @@ exports.sign_up_post = [
     const uniqueEmail = await User.find({ email: req.body.email })
     const errors = validationResult(req)
     if(!errors.isEmpty()){
-      res.render('signup', {errors: errors.array(), success:[]})
+      res.render('signup', {errors: errors.array(), success:[], user: req.user})
     }
     else if(uniqueEmail.length > 0) {
-      res.render('signup', { errors: [{msg: 'email already taken '}], success: []})
+      res.render('signup', { errors: [{msg: 'email already taken '}], success: [],user: req.user})
     }else{
       bcrypt.hash(req.body.password, 10, async function(err, hash) {
         if (err) return next(err)
@@ -28,13 +28,13 @@ exports.sign_up_post = [
             password: hash,
         })
         const result = await user.save()
-        
+        res.redirect('/')
         } catch(err){
           return next(err)
         } 
       })
   }
-  res.redirect('/')
+  
 }]
 exports.sign_out = async(req, res, next) => {
  req.logout(function(err){
