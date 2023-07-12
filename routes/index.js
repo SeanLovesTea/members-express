@@ -1,19 +1,19 @@
 const express = require('express');
 const authController = require('../controllers/authController');
+const messageController = require('../controllers/messagesController');
 const router = express.Router()
 const passport = require('passport')
 const LocalStrategy = require("passport-local").Strategy;
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 
-router.get('/', (req, res) => res.render('home',{user: req.user}))
-router.get('/home', (req, res) => res.render('home', {user: req.user}))
+router.get('/', messageController.messages_list)
 router.get("/login", (req, res) => res.render("login",{messages : req.flash()} ));
 router.post('/logout', authController.sign_out) 
-
 router.get("/signup",  (req, res) => res.render("signup", {errors:[], success:[]}));
-
-router.post('/sign-up', authController.sign_up_post)
+router.post('/signup', authController.sign_up_post)
+router.get('/new',(req, res) => res.render("createMessage"))
+router.post('/new', messageController.new_message)
 
 passport.use(
   new LocalStrategy({usernameField: 'email'}, async(email, password, done) => {
@@ -53,8 +53,8 @@ passport.deserializeUser(async function(id, done) {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/home",
-    failureRedirect: "/",
+    successRedirect: "/",
+    failureRedirect: "/login",
     failureFlash: true,
     failureMessage: true,
   })

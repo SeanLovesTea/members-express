@@ -5,8 +5,12 @@
   <title></title>
 </head>
 <body>
+  <% for(let i=0; i < messages.length; i++){%>
+    <p><%= messages[i].message %></p>
+    <% } %>
  <% if(user) {%>
   <h1> Welcome to the Club <%= user.username %></h1>
+  <a href="/new">Create a messsage</a>
   <form action='/logout' method="POST">
     <button>Log out</button>
   </form>

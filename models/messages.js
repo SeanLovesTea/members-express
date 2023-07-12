@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 
 const MessageSchema = new Schema({
   message: { type: String, reqruired: true, maxLength: 200 },
-  timestamp: { type: Date, default: Date.now },
-  createdBy: { type: Schema.Types.ObjectId, ref: 'User' }
+  createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
+  timestamp: { type: Date, default: Date.now }
 })
 
-modules.exports = mongoose.model('Message', MessageSchema)
+module.exports = mongoose.model('Message', MessageSchema)
