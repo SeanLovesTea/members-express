@@ -1,0 +1,84 @@
+body {
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #cad3f3;
+}
+.header{
+  background-color: #56658a;
+  display: flex;
+  justify-content: center;
+}
+nav {
+  min-width: 720px;
+  max-width: 1280px;
+  color: whitesmoke;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.nav__right {
+  display: flex;
+}
+.nav__link {
+  color: whitesmoke;
+  text-decoration: none;
+  margin: 0 .5rem;
+  padding: 1rem;
+  border-radius: 6px;
+  background-color: rgb(121, 121, 170);
+  box-shadow: 1px 1px 5px black;
+  font-weight: 700;
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+.black{
+  color:rgb(39, 37, 37);
+  background-color: #c0c5d3;
+}
+.nav__link:hover {
+  background-color: rgb(183, 183, 216);
+}
+.content__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.content {
+  min-width: 720px;
+  max-width: 1280px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.message__wrapper {
+  padding: 1rem;
+  width: 500px;
+  box-shadow: 1px 1px 5px grey;
+  border-radius: 6px;
+  margin: 1rem 0;
+  background-color: white;
+}
+.message {
+  margin: .5rem 0 1rem 0;
+  font-size: 1.25rem;
+}
+.message__username {
+  font-weight: 700;
+}
+.message__timestamp {
+  font-size: .85rem;
+}
+.form_signup {
+ width: 150px;
+}
+/* .form_signup > form > label {
+  margin: .5rem;
+} */
+.form_signup > form > input {
+  margin: .5rem 0;
+}

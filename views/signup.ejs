@@ -2,31 +2,41 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/public/style.css">
   <title></title>
 </head>
 <body>
-  <h1>Sign up to gain entrance into our exclusive Clubhouse</h1>
-  <form action="" method="POST">
-    <label for="username">Username</label>
-    <input type="text" name="username"/>
-    <label for="email">Email</label>
-    <input type="text" name="email"/>
-    <label for="password">Password</label>
-    <input type="text" name="password"/>   
-    <label for="passwordConfirmation">Confirm Password</label>
-    <input type="text" name="passwordConfirmation"/>   
-    <button>Sign up</button>
-  </form>
-  <%if(errors.length > 0){%>
-    <%errors.forEach(error => {%>
-        <p id = "err-msg-signup"><%=error.msg%></p>
-    <%})%>
-<%}%> 
-<%if(success.length > 0){%>
-    <%success.forEach(msg => {%>
-        <p id = "success-msg-signup"><%=msg.msg%></p>
-    <%})%>
-<%}%>
-  <a href="/">Home</a>
+  <div>
+    <%- include('partials/navbar') %>
+  </div>
+  <div class="content__wrapper">
+    <div class="content">
+
+      <h1>Sign up to gain entrance into our exclusive Clubhouse</h1>
+      <div class="form_signup">
+        <form action="" method="POST">
+          <label for="username">Username</label>
+          <input type="text" name="username"/>
+          <label for="email">Email</label>
+          <input type="email" name="email"/>
+          <label for="password">Password</label>
+          <input type="password" name="password"/>   
+          <label for="passwordConfirmation">Confirm Password</label>
+          <input type="password" name="passwordConfirmation"/>   
+          <button>Sign up</button>
+        </form>
+      </div>
+      <%if(errors.length > 0){%>
+        <%errors.forEach(error => {%>
+            <p id = "err-msg-signup"><%=error.msg%></p>
+        <%})%>
+    <%}%> 
+    <%if(success.length > 0){%>
+        <%success.forEach(msg => {%>
+            <p id = "success-msg-signup"><%=msg.msg%></p>
+        <%})%>
+    <%}%>
+    </div>
+  </div>
 </body>
 </html>

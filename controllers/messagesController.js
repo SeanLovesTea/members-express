@@ -2,13 +2,13 @@ const User = require('../models/user')
 const Message = require('../models/messages')
 
 exports.messages_list = async (req, res, next) => {
-  const allMessages = await Message.find().populate('createdBy').exec()
+  const allMessages = await Message.find().populate('createdBy').sort({timestamp: -1}).exec()
   
   res.render('home', {messages: allMessages,user: req.user})
   return next()
 }
 exports.new_message = async (req, res, next) => {
-  const user = await User.findOne({ 'username': 'Seany' })
+  const user = await User.findOne({ 'username': req.user.username })
   console.log(user)
   try {
     const message = new Message({

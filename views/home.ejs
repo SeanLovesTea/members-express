@@ -2,39 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="/public/style.css">
   <title></title>
 </head>
 <body>
-  <% if(user) {%>
-    <h1> Welcome to the Club <%= user.username %></h1>
-    <a href="/new">Create a messsage</a>
-    <form action='/logout' method="POST">
-      <button>Log out</button>
-    </form>
-    <% } else { %>
-    <a href="/login">Log In</a>
-    <a href="/signup">Sign Up</a>
-    <% } %>
-  <% if( typeof user == 'object' && user.member){ %>
-  <% for(let i=0; i < messages.length; i++){%>
-    <p><%= messages[i].message %></p>
-    <%= messages[i].createdBy %>
-    <%= messages[i].timestamp %>
-    <% } %>
-  <% } %>
-  <% if(typeof user == 'object' && !user.member){ %>
-    <a href="/password"> Become a member</a>
-    
-    <% for(let i=0; i < messages.length; i++){%>
-      <p><%= messages[i].message %></p>
-      <% } %>
-    <% } %>
-    <% if(typeof user !== 'object'){ %>
+  <div>
+    <%- include('partials/navbar') %>
+  </div>
+  <div class="content__wrapper">
+    <div class="content">
+      <% if(user) {%>
+        <h1> Welcome back <%= user.username %></h1>
+        <a href="/new" class="nav__link black">Create a messsage</a>
+        <% } %>
+      <% if( typeof user == 'object' && user.member){ %>
       <% for(let i=0; i < messages.length; i++){%>
-        <p><%= messages[i].message %></p>
+        <div class="message__wrapper">
+          <div class="message__username"><%= messages[i].createdBy %></div>
+          <div class="message"><%= messages[i].message %></div>
+          <div class="message__timestamp"> <%= messages[i].date_formatted %></div>
+        </div>
         <% } %>
       <% } %>
-    
+      <% if(typeof user == 'object' && !user.member){ %>
+        <% for(let i=0; i < messages.length; i++){%>
+          <div class="message__wrapper">
+            <div class="message"><%= messages[i].message %></div>
+          </div>
+          <% } %>
+        <% } %>
+        <% if(typeof user !== 'object'){ %>
+          <% for(let i=0; i < messages.length; i++){%>
+            <div class="message__wrapper">
+              <div class="message"><%= messages[i].message %></div>
+            </div>
+            <% } %>
+          <% } %>
+    </div>
+  </div>
 
 </body>
-</html>
+</html> 

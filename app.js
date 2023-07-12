@@ -32,6 +32,7 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user
   next()
 })
+app.use('/public', express.static('public'))
 
 app.use('/', indexRouter)
 

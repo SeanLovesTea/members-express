@@ -1,0 +1,26 @@
+
+  <div class="header">
+    <nav>
+      <div class="nav__left"><a href="/" class="nav__link">Home</a></div>
+    
+      <h1>The Clubouse</h1> 
+  
+      <div class="nav__right">
+        <% if(!user) { %>
+          <a href="/signup" class="nav__link">Sign Up</a>
+        <% } %>
+        <% if(!user) { %>
+          <a href="/login" class="nav__link">Log In</a>
+        <% } %>
+        <% if(user) { %>
+          <form action="/logout" method="POST" >
+            <button class="nav__link">Log Out</button>
+          </form>
+        <% } %>
+        
+        <% if(user && !user.member) { %>
+          <a href="/password" class="nav__link">Become a Member</a>
+        <% } %>
+        
+      </div>
+    </nav>
