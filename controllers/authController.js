@@ -28,12 +28,13 @@ exports.sign_up_post = [
             password: hash,
         })
         const result = await user.save()
-        res.redirect('/')
+        
         } catch(err){
           return next(err)
         } 
       })
   }
+  res.redirect('/')
 }]
 exports.sign_out = async(req, res, next) => {
  req.logout(function(err){
@@ -42,7 +43,7 @@ exports.sign_out = async(req, res, next) => {
  })
 }
 
-exports.secret_password_login_check = async(req, res, next) => {
+exports.login_check = async(req, res, next) => {
   console.log(req.user)
   if(req.user){
     next()
@@ -53,13 +54,13 @@ exports.secret_password_login_check = async(req, res, next) => {
 
 exports.secret_password = async(req, res, next) => {
   if (req.body.password !== 'Louiseypoo') {
-    return { message: 'Incorrect Password!'}
+     res.render('password',{ message: 'Incorrect password' })
   } else {
     console.log('correct password' + req.user)
     const user = await User.findOne({ email: req.user.email })
     user.member = true
     await user.save()
     console.log('status updated!')
-    res.redirect('/')
   }
+  res.redirect('/')
 }

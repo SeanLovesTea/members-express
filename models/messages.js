@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const MessageSchema = new Schema({
   message: { type: String, reqruired: true, maxLength: 200 },
-  createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
+  createdBy: { type: String },
   timestamp: { type: Date, default: Date.now }
 })
 

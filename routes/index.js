@@ -56,10 +56,9 @@ router.post(
     successRedirect: "/",
     failureRedirect: "/login",
     failureFlash: true,
-    failureMessage: true,
   })
 );
-router.get('/password', authController.secret_password_login_check, (req, res) => res.render("password"))
+router.get('/password', authController.login_check, (req, res) => res.render("password", {message: ''}))
 router.post('/password', authController.secret_password)
 
 module.exports = router;

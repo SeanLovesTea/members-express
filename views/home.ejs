@@ -5,17 +5,36 @@
   <title></title>
 </head>
 <body>
+  <% if(user) {%>
+    <h1> Welcome to the Club <%= user.username %></h1>
+    <a href="/new">Create a messsage</a>
+    <form action='/logout' method="POST">
+      <button>Log out</button>
+    </form>
+    <% } else { %>
+    <a href="/login">Log In</a>
+    <a href="/signup">Sign Up</a>
+    <% } %>
+  <% if( typeof user == 'object' && user.member){ %>
   <% for(let i=0; i < messages.length; i++){%>
     <p><%= messages[i].message %></p>
+    <%= messages[i].createdBy %>
+    <%= messages[i].timestamp %>
     <% } %>
- <% if(user) {%>
-  <h1> Welcome to the Club <%= user.username %></h1>
-  <a href="/new">Create a messsage</a>
-  <form action='/logout' method="POST">
-    <button>Log out</button>
-  </form>
-  <% } else { %>
-  <a href="/login">Log In</a>
   <% } %>
+  <% if(typeof user == 'object' && !user.member){ %>
+    <a href="/password"> Become a member</a>
+    
+    <% for(let i=0; i < messages.length; i++){%>
+      <p><%= messages[i].message %></p>
+      <% } %>
+    <% } %>
+    <% if(typeof user !== 'object'){ %>
+      <% for(let i=0; i < messages.length; i++){%>
+        <p><%= messages[i].message %></p>
+        <% } %>
+      <% } %>
+    
+
 </body>
 </html>

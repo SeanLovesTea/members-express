@@ -10,16 +10,4 @@ const UserSchema = new Schema({
   admin: { type: Boolean, default: false }
 });
 
-// Virtual for author's full name
-// UserSchema.virtual("name").get(function () {
-//   return this.last_name + ", " + this.first_name;
-// });
-
-// // Virtual for author's URL
-// UserSchema.virtual("url").get(function () {
-//   // We don't use an arrow function as we'll need the this object
-//   return `/user/${this._id}`;
-// });
-
-// Export model
 module.exports = mongoose.model("User", UserSchema);
