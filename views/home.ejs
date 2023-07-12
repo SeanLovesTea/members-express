@@ -21,6 +21,11 @@
           <div class="message__username"><%= messages[i].createdBy %></div>
           <div class="message"><%= messages[i].message %></div>
           <div class="message__timestamp"> <%= messages[i].date_formatted %></div>
+            <% if( typeof user == 'object' && user.admin){ %>
+              <form action='/delete/<%= messages[i]._id %>' method="POST">
+                <button>Delete</button>
+              </form>  
+          <% } %>
         </div>
         <% } %>
       <% } %>

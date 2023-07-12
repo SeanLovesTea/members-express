@@ -44,7 +44,6 @@ exports.sign_out = async(req, res, next) => {
 }
 
 exports.login_check = async(req, res, next) => {
-  console.log(req.user)
   if(req.user){
     next()
   } else {

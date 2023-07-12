@@ -17,7 +17,6 @@ router.post('/new', messageController.new_message)
 
 passport.use(
   new LocalStrategy({usernameField: 'email'}, async(email, password, done) => {
-    console.log(email)
     try {
       const user = await User.findOne({ email: email });
       if (!user) {
@@ -60,5 +59,7 @@ router.post(
 );
 router.get('/password', authController.login_check, (req, res) => res.render("password", {message: '', user: req.user}))
 router.post('/password', authController.secret_password)
+
+router.post('/delete/:id', messageController.delete_msg_post)
 
 module.exports = router;

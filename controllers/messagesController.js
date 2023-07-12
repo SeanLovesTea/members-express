@@ -23,3 +23,11 @@ exports.new_message = async (req, res, next) => {
   }
   res.redirect('/')
 }
+exports.delete_msg_post = async(req, res, next) => {
+  try {
+    const message = await Message.findByIdAndDelete(req.params.id).exec()
+  } catch (err) {
+    return next(err)
+  }
+  res.redirect('/')
+}
