@@ -52,14 +52,20 @@ exports.login_check = async(req, res, next) => {
 }
 
 exports.secret_password = async(req, res, next) => {
-  if (req.body.password !== 'Louiseypoo') {
-     res.render('password',{ message: 'Incorrect password' })
-  } else {
-    console.log('correct password' + req.user)
-    const user = await User.findOne({ email: req.user.email })
-    user.member = true
-    await user.save()
-    console.log('status updated!')
+  try{
+    if (req.body.password !== 'Louiseypoo') {
+      res.render('password',{ message: 'Incorrect password', user: req.user })
+   } else {
+     console.log('correct password' + req.user)
+     const user = await User.findOne({ email: req.user.email })
+     user.member = true
+     await user.save()
+     console.log('status updated!')
+   }
+   res.redirect('/')
+  } catch(err) {
+    return next(err)
   }
-  res.redirect('/')
+  
+  
 }

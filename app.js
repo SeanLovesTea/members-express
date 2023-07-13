@@ -4,10 +4,6 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const bcrypt = require('bcryptjs')
-const User = require('./models/user');
-const { body, validationResult } = require('express-validator')
 const flash = require('connect-flash')
 
 require('dotenv').config()
